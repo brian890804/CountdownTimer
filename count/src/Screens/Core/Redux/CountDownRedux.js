@@ -1,8 +1,8 @@
 import create from "zustand";
 
 const useStore = create((set) => ({
-    example: [],
-    setExample: () => set((state) => ({example:state.example}))
+    example: {},
+    setExample: (newExample) => set(() => ({ example: newExample }))
 }));
 
 export default useStore;
