@@ -86,7 +86,6 @@ function Prompt() {
 function CountDown() {
     const { Api, example, initTimmer, setInit } = useContext(content);
     const [show, setShow] = useState(false);
-    console.log(initTimmer, 'initTimmer')
     const renderAnswer = (sec) => {
         if (sec === 0) {
             setShow(true);
