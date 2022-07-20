@@ -21,10 +21,11 @@ function Prompt() {
     }
     return (
         <>
-            <div className="row text-white fs-4 text-center align-content-center "
+            <div className="row text-white  text-center align-content-center "
                 style={{
                     width: '80vw',
-                    height: '10vw',
+                    height: '5vw',
+                    fontSize: '2rem',
                     backgroundColor: "RGB(47,40,60)",
                 }}>
                 <div className="col-6">
@@ -44,11 +45,13 @@ function Prompt() {
                     </div >
                 </div>
             </div>
-            <div className="col-12  text-white fs-4 p-2"
+            <div className="col-12  text-white  p-2"
                 style={{
                     backgroundColor: 'gray',
                     textAlign: 'center',
-                    width: '80vw'
+                    minHeight:'10vh',
+                    width: '80vw',
+                    fontSize: '2rem',
                 }}>
                 <div className="col-12">
                     Question:
