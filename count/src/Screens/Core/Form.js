@@ -8,14 +8,13 @@ import "./Css/style.css";
 const content = createContext('');
 const { Provider } = content;
 function Prompt() {
-    const { example, total, setInit, setRefresh } = useContext(content);
+    const { example, total, setInit } = useContext(content);
     const [correctAmount, setCorrectAmount] = useState(0);
     const [showButton, setShowButton] = useState();
     const onChoice = (choice) => {
         setInit(0)
         setShowButton(true)
         setTimeout(() => setShowButton(false), 2200)
-        setTimeout(() => setRefresh(pre => pre + 1), 2200)
         if (choice === example.correct_answer) {
             setCorrectAmount((pre) => pre + 1)
         }
@@ -88,13 +87,16 @@ function Prompt() {
     )
 }
 function CountDown() {
-    const { Api, example, initTimmer, refresh, setInit } = useContext(content);
+    const { Api, example, initTimmer, setInit } = useContext(content);
     const [show, setShow] = useState(false);
+    const [refresh, setRefresh] = useState(0);
+
     const renderAnswer = (sec) => {
         if (sec === 0) {
             setShow(true);
             setTimeout(() => (Api.getExampleData(), setShow(false)), 2000)
             setTimeout(() => (setInit(15)), 2000)
+            setTimeout(() => setRefresh(pre => pre + 1), 2000)
         }
     }
 
@@ -131,7 +133,6 @@ export default function Form() {
     const { example, setExample } = CountDownRedux();
     const [total, setTotal] = useState(0);
     const [initTimmer, setInit] = useState(15);
-    const [refresh, setRefresh] = useState(0);
 
     const Api = {
         getExampleData: () => {
@@ -143,7 +144,7 @@ export default function Form() {
         return (() => Api.getExampleData())
     }, [])
     return (
-        <Provider value={{ Api, example, total, initTimmer, refresh, setRefresh, setInit }}>
+        <Provider value={{ Api, example, total, initTimmer, setInit }}>
             <Prompt />
             <CountDown />
         </Provider>
